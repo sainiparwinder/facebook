@@ -1,6 +1,6 @@
 <?php
       session_start();
-      $con= mysqli_connect('localhost','myuser','satnam');
+      $con= mysqli_connect('localhost','root','gurunanak');
       $x=mysqli_select_db($con,'mydb');
       if(!empty($_POST['sign_in'])){
             $user_id=$_POST['user_id'];
@@ -51,8 +51,8 @@
         </div>
         <div class="row">
           <div class="col-lg-4">
-            <div id="photo"><br></div>
-             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#uploadModal" >update photo</button>            
+            <div id="photo" data-toggle="modal" data-target="#uploadModal"><br></div>
+             <!-- button type="button" class="btn btn-info"  >update photo</button-->
              <p><?php $wc=$_SESSION["userName"]; echo $wc; ?> </p>
           </div>
           <div class="col-lg-4">
