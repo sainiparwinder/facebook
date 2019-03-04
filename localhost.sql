@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 27, 2019 at 12:34 PM
+-- Generation Time: Mar 04, 2019 at 09:06 AM
 -- Server version: 5.7.25-0ubuntu0.18.04.2
 -- PHP Version: 7.2.15-0ubuntu0.18.04.1
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `mydb`
 --
-CREATE DATABASE IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `mydb`;
 
 -- --------------------------------------------------------
 
@@ -84,9 +82,9 @@ CREATE TABLE `facebook_users` (
 --
 
 INSERT INTO `facebook_users` (`id`, `first_name`, `surname`, `user_id`, `password`, `profile_image`) VALUES
-(17, 'ram', 'singh', 'ram', '1', 'uploads/babananak.jpeg'),
-(18, 'happy', 'singh', 'hap', '1', NULL),
-(20, 'harsirat', 'kaur', 'har', '1', 'uploads/babananak.jpeg');
+(31, 'gurnbir', 'singh', 'gunbir', 'c4ca4238a0b923820dcc509a6f75849b', 'uploads/Photo-0075.jpg'),
+(32, 'harsirat', 'kaur', 'harsirat', 'c4ca4238a0b923820dcc509a6f75849b', 'uploads/bn.jpeg'),
+(33, 'parwinder', 'singh', 'parwinder', 'c4ca4238a0b923820dcc509a6f75849b', 'uploads/babananak.jpeg');
 
 -- --------------------------------------------------------
 
@@ -95,20 +93,12 @@ INSERT INTO `facebook_users` (`id`, `first_name`, `surname`, `user_id`, `passwor
 --
 
 CREATE TABLE `friend_requests` (
-  `request_id` int(250) NOT NULL,
+  `id` int(250) NOT NULL,
   `from_id` int(250) NOT NULL,
   `to_id` int(250) NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `status` char(250) DEFAULT NULL,
   `friend` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `friend_requests`
---
-
-INSERT INTO `friend_requests` (`request_id`, `from_id`, `to_id`, `status`, `friend`) VALUES
-(24, 17, 20, 0, 1),
-(25, 18, 20, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -207,7 +197,7 @@ INSERT INTO `students` (`id`, `firstname`, `fathername`, `sclass`, `rollno`, `em
 --
 
 CREATE TABLE `user_posts` (
-  `post_id` int(250) NOT NULL,
+  `id` int(250) NOT NULL,
   `user_id` int(250) NOT NULL,
   `post` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -216,9 +206,11 @@ CREATE TABLE `user_posts` (
 -- Dumping data for table `user_posts`
 --
 
-INSERT INTO `user_posts` (`post_id`, `user_id`, `post`) VALUES
-(182, 18, 'satnam waheguru'),
-(183, 20, 'waheguru');
+INSERT INTO `user_posts` (`id`, `user_id`, `post`) VALUES
+(294, 33, 'waheguru'),
+(295, 31, 'satnam waheguru\n'),
+(299, 32, 'waheguru waheguru'),
+(300, 31, 'i am gunbir');
 
 --
 -- Indexes for dumped tables
@@ -246,7 +238,7 @@ ALTER TABLE `facebook_users`
 -- Indexes for table `friend_requests`
 --
 ALTER TABLE `friend_requests`
-  ADD PRIMARY KEY (`request_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `images`
@@ -276,7 +268,7 @@ ALTER TABLE `students`
 -- Indexes for table `user_posts`
 --
 ALTER TABLE `user_posts`
-  ADD PRIMARY KEY (`post_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -296,12 +288,12 @@ ALTER TABLE `degree`
 -- AUTO_INCREMENT for table `facebook_users`
 --
 ALTER TABLE `facebook_users`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT for table `friend_requests`
 --
 ALTER TABLE `friend_requests`
-  MODIFY `request_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `images`
 --
@@ -321,7 +313,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `user_posts`
 --
 ALTER TABLE `user_posts`
-  MODIFY `post_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=301;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
