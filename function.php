@@ -15,8 +15,6 @@ if (!empty($_POST['action'])) {
 				mysqli_query($con, $q);	
 				 header("Location: index.php");	
 			}
-
- 		
 			break;
 		}
 		case "post" :
@@ -49,13 +47,13 @@ if (!empty($_POST['action'])) {
 		   	 	$p .='<tr> 
 		   	 	<td>'. $row["first_name"].'</td>
 		   	 	<td>' . $row["surname"] . '</td>
-		   	 	<td><button onclick="friendStatus('. $row['id'].',1)" class="btn btn-success">Add Friend</button></td></tr><br>';
+		   	 	<td><button data-action ="sentRequest" data-id ="'. $row['id'].'" class="btn btn-success send-request">Add Friend</button></td></tr><br>';
 		   	 }  // die(mysqli_error($con));
 		   	 echo $p;
 		   	}
 			break;	   
 		}
-		case "1" :	//friend request send
+		case "sentRequest" :	//friend request send
 		{
 			$id=$_SESSION["id"];
 			$q="SELECT * FROM `friend_requests` WHERE (from_id='$id' AND to_id='$_POST[id]') OR (from_id='$_POST[id]' AND to_id='$id')";

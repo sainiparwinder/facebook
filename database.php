@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect('localhost', 'myuser', 'satnam');
+$con = mysqli_connect('localhost', 'root', 'gurunanak');
 mysqli_select_db($con, 'mydb');
 ?>
     <link rel="stylesheet" href="css/bootstrap.min.css">

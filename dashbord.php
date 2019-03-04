@@ -94,6 +94,26 @@
 		$('#post_btn').click(function(){
 			$('#post').val('');
 			});
+			
+		$('#search').keyup(function(){
+			searchUser();
+		});	
+			
+		$('#searchList').on('click', '.send-request', function(e){
+			e.preventDefault();
+			 $.ajax({
+			  url:"function.php",
+			  type:"POST",
+			  data:{id:$(this).attr('data-id'),
+					status:$(this).attr('data-action'),
+					action:$(this).attr('data-action')},
+			  success: function(data){
+				$('#showPost').html(data);  
+				console.log(data);          
+			  }
+			});	
+			
+			});		
 	});
 	
      function usrPost(){
@@ -111,10 +131,12 @@
         });
       }
       function profilePhoto(){        
+		  var data = new FormData($("#proficePhoto")[0]);
+		  data.action = "upload";
         $.ajax({
           url:"function.php",
           type:"POST",
-          data: new FormData($("#proficePhoto")[0]),         		
+          data: data,         		
           contentType:false,
           processData: false,          
           success: function(data){
@@ -136,19 +158,21 @@
 	        });
 	    }
 	}
-	function friendStatus(id,status){
-        $.ajax({
-          url:"function.php",
-          type:"POST",
-          data:{id:id,
-          		status:status,
-                action:status},
-          success: function(data){
-          	$('#showPost').html(data);  
-          	console.log(data);          
-          }
-        });		
-	}
+	//~ function friendStatus(id,status){
+        //~ $.ajax({
+          //~ url:"function.php",
+          //~ type:"POST",
+          //~ data:{id:id,
+          		//~ status:status,
+                //~ action:status},
+          //~ success: function(data){
+          	//~ $('#showPost').html(data);  
+          	//~ console.log(data);          
+          //~ }
+        //~ });	
+        //~ 
+        //~ return false;	
+	//~ }
 	function showRequest(){
         $.ajax({
           url:"function.php",
